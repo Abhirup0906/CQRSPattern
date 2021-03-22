@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CQRSPattern.Library.NoMediatR
 {
-    public class GetEmployeeHandler : ICommandHandler<IEnumerable<EmployeeModel>, BaseResponseModel>
+    public class GetEmployeeHandler : ICommandHandler<IEnumerable<EmployeeModel>, BaseRequestModel>
     {
         private readonly IEmployeeRepository _employeeRepository;
         public GetEmployeeHandler(IEmployeeRepository employeeRepository)
@@ -15,7 +15,7 @@ namespace CQRSPattern.Library.NoMediatR
             _employeeRepository = employeeRepository;
         }
 
-        public IEnumerable<EmployeeModel> Handle(BaseResponseModel request)
+        public IEnumerable<EmployeeModel> Handle(BaseRequestModel request)
         {
             return _employeeRepository.GetEmployees();
         }

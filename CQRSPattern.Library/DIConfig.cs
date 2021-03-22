@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MediatR;
+using MediatR.Registration;
 
 namespace CQRSPattern.Library
 {
@@ -15,7 +17,9 @@ namespace CQRSPattern.Library
         {
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ICommandHandler<BaseResponseModel, EmployeeModel>, CreateEmployeeHandler>();
-            services.AddScoped<ICommandHandler<IEnumerable<EmployeeModel>, BaseResponseModel>, GetEmployeeHandler>();
+            services.AddScoped<ICommandHandler<IEnumerable<EmployeeModel>, BaseRequestModel>, GetEmployeeHandler>();
+
+            services.AddMediatR(typeof(DIConfig).Assembly);
         }
     }
 }
